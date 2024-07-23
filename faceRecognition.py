@@ -3,12 +3,23 @@ import cv2
 import os
 
 
-#Face detection is done
-def faceDetection(test_img):
-    gray_img=cv2.cvtColor(test_img,cv2.COLOR_BGR2GRAY)
-    face_haar=cv2.CascadeClassifier(r'haarcascade_frontalface_alt.xml') 
-    faces=face_haar.detectMultiScale(gray_img,scaleFactor=1.2,minNeighbors=3)
-    return faces,gray_img
+#Face detection is 
+def faceDetection(test_img, min_size=(210, 210), max_size=(380, 380)):#range 640 480
+    gray_img = cv2.cvtColor(test_img, cv2.COLOR_BGR2GRAY)
+    face_haar = cv2.CascadeClassifier(r'haarcascade_frontalface_alt.xml') 
+    faces = face_haar.detectMultiScale(
+        gray_img,
+        scaleFactor=1.1,
+        minNeighbors=3,
+        minSize=min_size,
+        maxSize=max_size
+    )
+    return faces, gray_img
+# def faceDetection(test_img):
+#     gray_img=cv2.cvtColor(test_img,cv2.COLOR_BGR2GRAY)
+#     face_haar=cv2.CascadeClassifier(r'haarcascade_frontalface_alt.xml') 
+#     faces=face_haar.detectMultiScale(gray_img,scaleFactor=1.2,minNeighbors=3)
+#     return faces,gray_img
 
 #Labels for training data has been created
 

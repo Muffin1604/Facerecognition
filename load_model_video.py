@@ -3,10 +3,6 @@ import cv2
 import os
 
 import faceRecognition as fr
-#print (fr)
-
-
-
 face_recognizer=cv2.face.LBPHFaceRecognizer_create()
 face_recognizer.read(r'trainingData.yml')    #Give path of where trainingData.yml is saved
 
@@ -14,9 +10,10 @@ cap=cv2.VideoCapture(0)#If you want to recognise face from a video then replace 
 c= 0
 n=5
 
-name={0:"Karan",1:"Abhiraj",2:"Lalit"}    #Change names accordingly.  If you want to recognize only one person then write:- name={0:"name"} thats all. Dont write for id number 1.
+name={0:"Karan",1:"ashraf",2:"Kalyan"}    #Change names accordingly.  If you want to recognize only one person then write:- name={0:"name"} thats all. Dont write for id number 1.
 while True:
-    ret,test_img=cap.read()
+    ret,test_img1=cap.read()
+    test_img = cv2.flip(test_img1, 1)
     if not ret:
         break
     #if c % n == 0:
@@ -35,13 +32,13 @@ while True:
         print("label :",label)
         fr.draw_rect(test_img,face)
         predicted_name="unknown"
-        if confidence < 50:
+        if confidence < 33:
             predicted_name=name[label]
         fr.put_text(test_img,predicted_name,x,y)
 
         resized_img=cv2.resize(test_img,(1000,700))
 
-        cv2.imshow("face detection ", resized_img)
+    cv2.imshow("face detection ", test_img)
     c += 1
     if cv2.waitKey(10)==ord('q'):
         break
