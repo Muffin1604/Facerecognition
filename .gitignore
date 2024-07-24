@@ -4,3 +4,5 @@ trainingData.yml
 *.mp4
 __pycache__/
 *.jpg
+*.csv
+frame-images

@@ -12,7 +12,7 @@ while True:
     if not ret:
         break
     if cv2.waitKey(5) == ord('k'):
-        cv2.imwrite("train-images/0/image%04i.jpg" % cpt, frame)  # Save frame as image
+        cv2.imwrite("train-images/2/image%04i.jpg" % cpt, frame)  # Save frame as image
         cpt += 1
     if cv2.waitKey(10) == ord('q'):
         break
